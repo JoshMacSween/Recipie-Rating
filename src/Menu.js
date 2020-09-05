@@ -9,7 +9,10 @@ export default function Menu({ title, recipes }) {
         <h1>{title}</h1>
       </header>
       <div className='recipes'>
-        <StarRating />
+        <StarRating
+          style={{ backgroundColor: "lightblue" }}
+          onDoubleClick={e => alert("Double Click")}
+        />
         {recipes.map((recipe, i) => (
           <Recipe key={i} {...recipe} />
         ))}
