@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import Menu from './Menu'
-import { data } from './db'
-export default function App() {}
+import colorData from './color-data.json'
+import ColorList from './ColorList.js'
 
-ReactDOM.render(
-  <Menu recipes={data} title='Delicious Recipes' />,
-  document.getElementById('root')
-)
+export default function App() {
+  const [colors, setColors] = useState(colorData)
+  return (
+    <ColorList
+      colors={colors}
+      onRemoveColor={(id) => {
+        const newColors = colors.filter((color) => color.id !== id)
+        setColors(newColors)
+      }}
+    />
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
